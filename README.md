@@ -9,9 +9,13 @@ market-frontend
 Actions allowed
 ---------------
 +Mint NFT
+
 +List NFT
+
 +Delist NFT
+
 +Sell NFT
+
 +Buy NFT  
 
 
@@ -24,7 +28,9 @@ Used tools
 ----------
 
 +Truffle --> Project initialization, creation of contracts, manage of migrations, deploy of contracts
+
 +ReMix --> Online editor for deploy and test methods of smart contracts
+
 +Ganache --> Local blockchain used for deploy of contracts (allowing get detailed info of contract transactions) and creation of test accounts with public and private key
 
 Running the project
