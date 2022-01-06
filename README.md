@@ -60,6 +60,7 @@ Running the project
 5. Execute the following commands on the folder
 
    -npm i -g lite-server
+   
    -lite-server
   
   
