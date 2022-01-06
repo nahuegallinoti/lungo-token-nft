@@ -45,11 +45,15 @@ Running the project
   #NOTE: Make sure to replace the following variables in the next files:
   
   contracts/3.MarketNFT.sol
+  --------------------------
+  
   *nftContract: contract address NFT
+  
   *tokenContract: contract address LUNGO token
 
   
   -truffle build --> build the contracts and generate '.json' files in the 'build' folder (.json files are required in the frontend)
+  
   -truffle migrate --> run the files of 'migrations' folder and deploy the contracts on the network configured in 'truffle-config.js' file
   
   #NOTE: Actually the project is configured for deploy contracts on local network. (port 8545)
@@ -59,8 +63,11 @@ Running the project
   #NOTE: Make sure to replace the following variables in 'blockchain_stuff.js' file:
    
   *NETWORK_ID: Actually use 5777 (localhost)
+  
   *NFT_CONTRACT_ADDRESS: contract address NFT
+  
   *MARKETPLACE_CONTRACT_ADDRESS: contract address Market NFT
+  
   *TOKEN_CONTRACT_ADDRESS: contract address LUNGO token
   
 5. Execute the following commands on the folder
