@@ -58,6 +58,7 @@ Running the project
   *TOKEN_CONTRACT_ADDRESS: contract address LUNGO token
   
 5. Execute the following commands on the folder
+
    -npm i -g lite-server
    -lite-server
   
