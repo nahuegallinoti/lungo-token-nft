@@ -34,6 +34,8 @@ Running the project
 2. Open terminal on the folder
 3. Run the following commands: 
 
+  -npm install
+  
   #NOTE: Make sure to replace the following variables in the next files:
   
   contracts/3.MarketNFT.sol
@@ -46,7 +48,7 @@ Running the project
   
   #NOTE: Actually the project is configured for deploy contracts on local network. (port 8545)
   
-4. Go to 'market-frontend' folder and open 'index.html' file
+4. Go to 'market-frontend' folder and open 'index.html' file with an editor text
   
   #NOTE: Make sure to replace the following variables in 'blockchain_stuff.js' file:
    
@@ -54,6 +56,10 @@ Running the project
   *NFT_CONTRACT_ADDRESS: contract address NFT
   *MARKETPLACE_CONTRACT_ADDRESS: contract address Market NFT
   *TOKEN_CONTRACT_ADDRESS: contract address LUNGO token
-   
+  
+5. Execute the following commands on the folder
+   -npm i -g lite-server
+   -lite-server
+  
   
   Tip: You can load in ReMix your deployed contracts on Ganache. So every transaction to each contract will be log in Ganache
