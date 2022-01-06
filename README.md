@@ -2,12 +2,12 @@
 
 
 market-frontend
-----------------
+---------------
 +Frontend for marketplace
 +Transactions are using a custom token: 'LUNGO Token'
 
-Actions allowed:
-----------------
+Actions allowed
+---------------
 +Mint NFT
 +List NFT
 +Delist NFT
@@ -21,14 +21,14 @@ nft-token-solidity
 
 
 Used tools
------------
+----------
 
 +Truffle --> Project initialization, creation of contracts, manage of migrations, deploy of contracts
 +ReMix --> Online editor for deploy and test methods of smart contracts
 +Ganache --> Local blockchain used for deploy of contracts (allowing get detailed info of contract transactions) and creation of test accounts with public and private key
 
 Running the project
---------------------
+-------------------
 
 1. Open the folder called 'nft-token-solidity'
 2. Open terminal on the folder
