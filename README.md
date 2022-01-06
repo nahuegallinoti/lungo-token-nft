@@ -42,6 +42,7 @@ Running the project
 
   -npm install
   
+  ```diff
   #NOTE: Make sure to replace the following variables in the next files:
   
   contracts/3.MarketNFT.sol
