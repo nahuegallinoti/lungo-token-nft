@@ -43,7 +43,8 @@ Running the project
   -npm install
   
   ```diff
-  #NOTE: Make sure to replace the following variables in the next files:
+  !#NOTE: Make sure to replace the following variables in the next files:
+  ```
   
   contracts/3.MarketNFT.sol
   --------------------------
@@ -57,11 +58,14 @@ Running the project
   
   -truffle migrate --> run the files of 'migrations' folder and deploy the contracts on the network configured in 'truffle-config.js' file
   
-  #NOTE: Actually the project is configured for deploy contracts on local network. (port 8545)
-  
+  ```diff
+  !#NOTE: Actually the project is configured for deploy contracts on local network. (port 8545)
+  ```
 4. Go to 'market-frontend' folder and open 'index.html' file with an editor text
   
-  #NOTE: Make sure to replace the following variables in 'blockchain_stuff.js' file:
+  ```diff
+  !#NOTE: Make sure to replace the following variables in 'blockchain_stuff.js' file:
+  ```
    
   *NETWORK_ID: Actually use 5777 (localhost)
   
