@@ -1,6 +1,6 @@
 {
 	"compiler": {
-		"version": "0.8.7+commit.e28d00a7"
+		"version": "0.8.6+commit.11564f7e"
 	},
 	"language": "Solidity",
 	"output": {
@@ -86,6 +86,45 @@
 				"type": "event"
 			},
 			{
+				"inputs": [],
+				"name": "CREATOR",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "MAX_ELEMENTS",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "PRICE",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "address",
@@ -166,10 +205,16 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_count",
+						"type": "uint256"
+					}
+				],
 				"name": "mint",
 				"outputs": [],
-				"stateMutability": "nonpayable",
+				"stateMutability": "payable",
 				"type": "function"
 			},
 			{
@@ -382,6 +427,32 @@
 			},
 			{
 				"inputs": [],
+				"name": "token_count",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalMint",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
 				"name": "totalSupply",
 				"outputs": [
 					{
@@ -412,6 +483,13 @@
 					}
 				],
 				"name": "transferFrom",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdrawAll",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -478,7 +556,7 @@
 		"compilationTarget": {
 			"2.LungoNFT.sol": "LungoNFT"
 		},
-		"evmVersion": "london",
+		"evmVersion": "berlin",
 		"libraries": {},
 		"metadata": {
 			"bytecodeHash": "ipfs"
@@ -491,11 +569,11 @@
 	},
 	"sources": {
 		"2.LungoNFT.sol": {
-			"keccak256": "0x2f9ffaf217b94bf80d122e361a374380c7db20c1efb6a247539d5f594eaad1cf",
+			"keccak256": "0x87442b78dc057b5ab722f5912286a5ed80b50353446d8f6df43154db10ba9397",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://bf55288eb13320118d072571ba730d5e05703408660a981f081031704f390ed7",
-				"dweb:/ipfs/QmYE2Bv7BsJNLVnvJfdutYC5xmC8GA43voGoWsCbeBxajA"
+				"bzz-raw://02fd4f10664b2ee0747be4746caca5cc47084c2846e59c98509033cb0406a415",
+				"dweb:/ipfs/QmP8auzQUNBKoZgwArH3KHsumqR9mkwUh2579psjqCmuuM"
 			]
 		},
 		"@openzeppelin/contracts/token/ERC721/ERC721.sol": {
@@ -560,6 +638,14 @@
 			"urls": [
 				"bzz-raw://6df0ddf21ce9f58271bdfaa85cde98b200ef242a05a3f85c2bc10a8294800a92",
 				"dweb:/ipfs/QmRK2Y5Yc6BK7tGKkgsgn3aJEQGi5aakeSPZvS65PV8Xp3"
+			]
+		},
+		"@openzeppelin/contracts/utils/Counters.sol": {
+			"keccak256": "0xf0018c2440fbe238dd3a8732fa8e17a0f9dce84d31451dc8a32f6d62b349c9f1",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://59e1c62884d55b70f3ae5432b44bb3166ad71ae3acd19c57ab6ddc3c87c325ee",
+				"dweb:/ipfs/QmezuXg5GK5oeA4F91EZhozBFekhq5TD966bHPH18cCqhu"
 			]
 		},
 		"@openzeppelin/contracts/utils/Strings.sol": {

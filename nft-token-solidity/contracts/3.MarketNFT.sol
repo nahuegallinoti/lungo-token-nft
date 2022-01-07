@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/utils/math/SafeMath.sol";
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "../node_modules/@openzeppelin/contracts/utils/math/SafeMath.sol";
+import "../node_modules/@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "../node_modules/@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 struct Listing
 {
@@ -19,8 +19,8 @@ contract MarketNFT is ReentrancyGuard {
 
   uint public listing_count = 0;
   mapping (uint => Listing) public listings;
-  ERC721 nftContract = ERC721(0xC7505CAca80059658FB97461df882Fc2ef55E5Ea);
-  ERC20 tokenContract = ERC20(0xC5C2ca67644B6b097C64D592C6741baa70f827AA);
+  ERC721 nftContract = ERC721(0x77129457341b385FFC79085aE1a458d474D709e8);
+  ERC20 tokenContract = ERC20(0xfB13B339a00A821034e0010080870fCEC9D289CA);
 
   function addListing(uint token_id, uint price) public nonReentrant
   {
