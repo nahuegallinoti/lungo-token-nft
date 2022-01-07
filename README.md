@@ -4,7 +4,7 @@
 market-frontend
 ---------------
 +Frontend for marketplace
-+Transactions using a custom token: 'LUNGO Token'
++Transactions use a custom token called: 'LUNGO Token'
 
 Actions allowed
 ---------------
