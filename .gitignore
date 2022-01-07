@@ -1,3 +1,5 @@
 nft-token-solidity/build
 nft-token-solidity/node_modules
 nft-token-solidity/package-lock.json
+react-write-read-smart-contracts/node_modules
+react-write-read-smart-contracts/package-lock.json
