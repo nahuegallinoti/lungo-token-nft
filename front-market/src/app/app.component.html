@@ -1,0 +1,5 @@
+
+<app-login (walletIdEmitter)="updateWallet($event)"></app-login>
+<app-account-data *ngIf="account.address" [account]="account"></app-account-data>
+
+<button (click)="signTransaction()">Sign Transaction</button>
