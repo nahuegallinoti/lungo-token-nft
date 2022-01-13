@@ -1,8 +1,8 @@
 # lungo-token-nft
 
 
-market-frontend
----------------
+front-market
+-------------
 +Marketplace frontend with Angular 13
 
 +Transactions with NFT's uses an own token called: 'LUNGO Token'
@@ -62,25 +62,25 @@ Running the project
   ```diff
   !#NOTE: Actually the project is configured for deploy contracts on local network. (port 8545)
   ```
-4. Go to 'market-frontend' folder and open 'index.html' file with an editor text
+4. Go to 'front-market' folder and run the following commands:
+
+  -npm install
   
   ```diff
-  !#NOTE: Make sure to replace the following variables in 'blockchain_stuff.js' file:
+  !#NOTE: Make sure to replace the following variables in 'environment.ts' file:
   ```
-   
-  *NETWORK_ID: Actually use 5777 (localhost)
-  
-  *NFT_CONTRACT_ADDRESS: contract address NFT
-  
-  *MARKETPLACE_CONTRACT_ADDRESS: contract address Market NFT
-  
-  *TOKEN_CONTRACT_ADDRESS: contract address LUNGO token
-  
+
+  LUNGO_NFT_CONTRACT_ADDRESS: 'Contract Address LUNGO NFT'
+  LUNGO_NFT_CONTRACT_JSON_PATH: 'assets/LungoNFT.json'
+  LUNGO_TOKEN_CONTRACT_ADDRESS: 'Contract Address LUNGO Token'
+  LUNGO_TOKEN_CONTRACT_JSON_PATH: 'assets/LungoToken.json'
+  MARKETPLACE_CONTRACT_ADDRESS: 'Contract Address Market NFT'
+  MARKETPLACE_TOKEN_CONTRACT_JSON_PATH: 'assets/MarketNFT.json'
+
+
 5. Execute the following commands on the folder
 
-   -npm i -g lite-server
-   
-   -lite-server
+   -npm run start
   
   
   Tip: You can load in ReMix your deployed contracts on Ganache. So every transaction to each contract will be log in Ganache
