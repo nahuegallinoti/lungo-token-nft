@@ -3,8 +3,9 @@
 
 market-frontend
 ---------------
-+Frontend for marketplace
-+Transactions use a custom token called: 'LUNGO Token'
++Marketplace frontend with Angular 13
+
++Transactions with NFT's uses an own token called: 'LUNGO Token'
 
 Actions allowed
 ---------------
@@ -16,7 +17,7 @@ Actions allowed
 
 +Sell NFT
 
-+Buy NFT  
++Buy NFT
 
 
 nft-token-solidity
