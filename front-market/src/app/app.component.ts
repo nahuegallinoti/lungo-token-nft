@@ -26,7 +26,4 @@ export class AppComponent implements OnInit {
 
   }
 
-  signTransaction() {
-    this._tokenService.signTransaction();
-  }
 }

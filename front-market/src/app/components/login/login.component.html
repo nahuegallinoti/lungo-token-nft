@@ -1,0 +1,5 @@
+<div class="conn-handler">
+  <button type="button" class="btn" (click)="connectionHandler()" [ngClass]="{' btn-danger': isLogin,
+    'btn-success': !isLogin}">
+    {{ isLogin ? 'Disconnect Wallet' : 'Connect Wallet' }}</button>
+</div>

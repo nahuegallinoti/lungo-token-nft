@@ -1,6 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Account } from '../models/account';
-import { TokenService } from '../services/token.service';
+import { Account } from 'src/app/models/account';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-login',

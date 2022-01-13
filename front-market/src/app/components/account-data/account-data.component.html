@@ -1,0 +1,6 @@
+<div class="account-data">
+  <h1>Address: {{account.address}}</h1>
+
+  <button *ngIf="!account.balance" type="button" class="btn btn-primary" (click)="getBalance()">Get Balance</button>
+  <h1 class="balance" *ngIf="account.balance">Balance: {{account.balance}} LUN</h1>
+</div>

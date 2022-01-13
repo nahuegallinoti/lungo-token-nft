@@ -1,0 +1,40 @@
+<div class="data-nft">
+
+  <div class="btn-nfts">
+    <button class="btn" [ngClass]="{'btn-secondary': nft_listed.length != 0,'btn-primary': nft_listed.length == 0}"
+      (click)="showMarket()">
+      {{ active_listing_count == -1 ? 'Show Market' : 'Hide Market' }}</button>
+  </div>
+
+  <div *ngIf='active_listing_count != -1'>
+
+    <h1 class="market-title">Market</h1>
+    <h1 class="market-title">Total: {{nft_listed.length}}</h1>
+    <div class="nft-list">
+      <div class="nft-item" *ngFor="let nft of nft_listed">
+        <h3>NFT Id: {{nft.token_id}}</h3>
+
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Price {{nft.price}}</span>
+        </div>
+
+        <div>
+          <input type="button" class="btn-approve btn btn-success" value="Approve" (click)="approveBuy(nft)">
+          <input type="button" class="btn-sell btn btn-danger" value="Buy" (click)="buy(nft)">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+  [ngClass]="{'show-snack': message.data, 'hide-snack': !message.data}">
+  <div class="toast-header">
+    <img src="../../assets/check.png" width="50px" class="rounded me-2" alt="Success">
+    <strong class="me-auto">{{message.action}}</strong>
+  </div>
+  <div class="toast-body">
+    {{message.data}}
+  </div>
+  <button (click)='hideToast()' type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+</div>
