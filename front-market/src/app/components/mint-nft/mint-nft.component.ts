@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContractData, ContractName } from 'src/app/models/enum-contracts';
 import { ContractService } from 'src/app/services/contract.service';
-import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-mint-nft',
@@ -12,14 +12,16 @@ export class MintNftComponent implements OnInit {
   minting: boolean = false;
   txHash: string = '';
 
+  contracts_data: ContractData = new ContractData();
+
   nft_contract: any;
-  NFT_CONTRACT_ADDRESS = "0x19C146C4f7F96f48659bb5CCDe2B7261b66f8846"
-  NFT_CONTRACT_JSON_PATH = 'assets/contracts/json/LungoNFT.json';
 
-  constructor(private _contractService: ContractService, private _tokenService: TokenService) {
+  constructor(private _contractService: ContractService) {
 
-    this._contractService.getContract(this.NFT_CONTRACT_JSON_PATH, this.NFT_CONTRACT_ADDRESS).then(contract => {
-      this.nft_contract = contract;
+    let contractNFT = this.contracts_data.contracts.find(x => x.contract_name == ContractName.LUNGO_NFT);
+
+    this._contractService.getContract(contractNFT?.contract_abi, contractNFT?.contract_address).then(result => {
+      this.nft_contract = result;
     });
   }
 

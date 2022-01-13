@@ -1,10 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { BigNumber } from "ethers";
 import { Account } from 'src/app/models/account';
-import { contract_instanciate } from 'src/app/models/contract_instanciate';
 import { ContractService } from 'src/app/services/contract.service';
 import { TokenService } from 'src/app/services/token.service';
-import { environment } from 'src/environments/environment';
+import { ContractData, ContractName } from 'src/app/models/enum-contracts';
 
 @Component({
   selector: 'app-nft-data',
@@ -18,25 +16,7 @@ export class NftDataComponent implements OnInit {
     balance: '',
   };
 
-  contracts: contract_instanciate[] =
-    [
-      {
-        contract_name: 'LungoNFT',
-        contract_address: environment.LUNGO_NFT_CONTRACT_ADDRESS,
-        contract_abi: environment.LUNGO_NFT_CONTRACT_JSON_PATH
-      },
-      {
-        contract_name: 'LungoToken',
-        contract_address: environment.LUNGO_TOKEN_CONTRACT_ADDRESS,
-        contract_abi: environment.LUNGO_TOKEN_CONTRACT_JSON_PATH
-      },
-      {
-        contract_name: 'MarketNFT',
-        contract_address: environment.MARKETPLACE_CONTRACT_ADDRESS,
-        contract_abi: environment.MARKETPLACE_TOKEN_CONTRACT_JSON_PATH
-      },
-
-    ]
+  contracts_data: ContractData = new ContractData();
 
   nftCount: number = -1;
   list_nft: any[] = [];
@@ -63,7 +43,7 @@ export class NftDataComponent implements OnInit {
   }
 
   private async setNFTContract() {
-    let contractNFT = this.contracts.find(x => x.contract_name == 'LungoNFT');
+    let contractNFT = this.contracts_data.contracts.find(x => x.contract_name == ContractName.LUNGO_NFT);
 
     if (contractNFT == undefined)
       return;
@@ -74,7 +54,7 @@ export class NftDataComponent implements OnInit {
   }
 
   private async setTokenContract() {
-    let contractToken = this.contracts.find(x => x.contract_name == 'LungoToken');
+    let contractToken = this.contracts_data.contracts.find(x => x.contract_name == ContractName.LUNGO_TOKEN);
 
     if (contractToken == undefined)
       return;
@@ -84,7 +64,7 @@ export class NftDataComponent implements OnInit {
     });
   }
   private async setMarketContract() {
-    let contractMarket = this.contracts.find(x => x.contract_name == 'MarketNFT');
+    let contractMarket = this.contracts_data.contracts.find(x => x.contract_name == ContractName.MARKET_NFT);
 
     if (contractMarket == undefined)
       return;
@@ -136,9 +116,11 @@ export class NftDataComponent implements OnInit {
 
   async approve(token_id: any) {
 
+    let market_contract = this.contracts_data.contracts.find(x => x.contract_name == ContractName.MARKET_NFT);
+
     token_id = Number(token_id).toString()
 
-    await this.nft_contract.approve(environment.MARKETPLACE_CONTRACT_ADDRESS, token_id).then((result: any) => {
+    await this.nft_contract.approve(market_contract?.contract_address, token_id).then((result: any) => {
       this.message = {
         action: 'Approve successfully',
         data: result.hash

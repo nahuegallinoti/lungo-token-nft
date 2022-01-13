@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ContractData, ContractName } from 'src/app/models/enum-contracts';
 import { environment } from 'src/environments/environment';
-import { contract_instanciate } from '../../models/contract_instanciate';
 import { nft_list } from '../../models/nft_listed';
 import { ContractService } from '../../services/contract.service';
 
@@ -27,21 +27,8 @@ export class MarketComponent implements OnInit {
     data: ''
   }
 
+  contracts_data: ContractData = new ContractData();
 
-  contracts: contract_instanciate[] =
-    [
-      {
-        contract_name: 'MarketNFT',
-        contract_address: environment.MARKETPLACE_CONTRACT_ADDRESS,
-        contract_abi: environment.MARKETPLACE_TOKEN_CONTRACT_JSON_PATH
-      },
-      {
-        contract_name: 'LungoToken',
-        contract_address: environment.LUNGO_TOKEN_CONTRACT_ADDRESS,
-        contract_abi: environment.LUNGO_TOKEN_CONTRACT_JSON_PATH
-      },
-
-    ]
 
   constructor(private _contractService: ContractService) {
     this.setMarketContract();
@@ -50,7 +37,7 @@ export class MarketComponent implements OnInit {
   }
 
   private async setMarketContract() {
-    let contractMarket = this.contracts.find(x => x.contract_name == 'MarketNFT');
+    let contractMarket = this.contracts_data.contracts.find(x => x.contract_name == ContractName.MARKET_NFT);
 
     if (contractMarket == undefined)
       return;
@@ -61,7 +48,7 @@ export class MarketComponent implements OnInit {
   }
 
   private async setTokenContract() {
-    let contractToken = this.contracts.find(x => x.contract_name == 'LungoToken');
+    let contractToken = this.contracts_data.contracts.find(x => x.contract_name == ContractName.LUNGO_TOKEN);
 
     if (contractToken == undefined)
       return;
@@ -105,9 +92,11 @@ export class MarketComponent implements OnInit {
 
   async approveBuy(nft: nft_list) {
 
+    let market_contract = this.contracts_data.contracts.find(x => x.contract_name == ContractName.MARKET_NFT);
+
     let priceFixed = nft.price.toString()
 
-    await this.token_contract.approve(environment.MARKETPLACE_CONTRACT_ADDRESS, priceFixed).then((result: any) => {
+    await this.token_contract.approve(market_contract?.contract_address, priceFixed).then((result: any) => {
       this.message = {
         action: 'Buy Approve successfully',
         data: result.hash

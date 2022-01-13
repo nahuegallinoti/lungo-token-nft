@@ -82,6 +82,10 @@ Running the project
   
   *MARKETPLACE_TOKEN_CONTRACT_JSON_PATH: 'assets/MarketNFT.json'
 
+  *ERC20_OPERATOR_CONTRACT_ADDRESS: "Contract Address ERC20 Operator",
+
+  *ERC20_OPERATOR_CONTRACT_JSON_PATH: 'assets/ERC20Operator.json',
+
 
 5. Execute the following commands on the folder
 

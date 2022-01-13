@@ -1,9 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Account } from 'src/app/models/account';
-import { contract_instanciate } from 'src/app/models/contract_instanciate';
+import { ContractData, ContractName } from 'src/app/models/enum-contracts';
 import { ContractService } from 'src/app/services/contract.service';
-import { TokenService } from 'src/app/services/token.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-account-data',
@@ -19,16 +17,9 @@ export class AccountDataComponent implements OnInit {
 
   token_contract: any;
 
-  contracts: contract_instanciate[] =
-    [
-      {
-        contract_name: 'LungoToken',
-        contract_address: environment.LUNGO_TOKEN_CONTRACT_ADDRESS,
-        contract_abi: environment.LUNGO_TOKEN_CONTRACT_JSON_PATH
-      },
-    ]
+  contracts_data: ContractData = new ContractData();
 
-  constructor(private _tokenService: TokenService, private _contractService: ContractService) {
+  constructor(private _contractService: ContractService) {
     this.setTokenContract();
   }
 
@@ -36,7 +27,7 @@ export class AccountDataComponent implements OnInit {
   }
 
   private async setTokenContract() {
-    let contractToken = this.contracts.find(x => x.contract_name == 'LungoToken');
+    let contractToken = this.contracts_data.contracts.find(x => x.contract_name == ContractName.LUNGO_TOKEN);
 
     if (contractToken == undefined)
       return;

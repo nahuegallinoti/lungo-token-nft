@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { contract_instanciate } from 'src/app/models/contract_instanciate';
 import { nft_list } from 'src/app/models/nft_listed';
 import { ContractService } from 'src/app/services/contract.service';
 import { TokenService } from 'src/app/services/token.service';
-import { environment } from 'src/environments/environment';
+import { ContractData, ContractName } from 'src/app/models/enum-contracts';
 
 @Component({
   selector: 'app-my-nft-list',
@@ -17,15 +16,7 @@ export class MyNftListComponent implements OnInit {
 
   }
 
-  contracts: contract_instanciate[] =
-  [
-    {
-      contract_name: 'MarketNFT',
-      contract_address: environment.MARKETPLACE_CONTRACT_ADDRESS,
-      contract_abi: environment.MARKETPLACE_TOKEN_CONTRACT_JSON_PATH
-    },
-
-  ]
+  contracts_data: ContractData = new ContractData();
 
   my_nfts_listed: nft_list[] = []
   active_listing_count: number = -1
@@ -40,7 +31,7 @@ export class MyNftListComponent implements OnInit {
   }
 
   private async setMarketContract() {
-    let contractMarket = this.contracts.find(x => x.contract_name == 'MarketNFT');
+    let contractMarket = this.contracts_data.contracts.find(x => x.contract_name == ContractName.MARKET_NFT);
 
     if (contractMarket == undefined)
       return;
