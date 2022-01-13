@@ -70,12 +70,17 @@ Running the project
   !#NOTE: Make sure to replace the following variables in 'environment.ts' file:
   ```
 
-  LUNGO_NFT_CONTRACT_ADDRESS: 'Contract Address LUNGO NFT'
-  LUNGO_NFT_CONTRACT_JSON_PATH: 'assets/LungoNFT.json'
-  LUNGO_TOKEN_CONTRACT_ADDRESS: 'Contract Address LUNGO Token'
-  LUNGO_TOKEN_CONTRACT_JSON_PATH: 'assets/LungoToken.json'
-  MARKETPLACE_CONTRACT_ADDRESS: 'Contract Address Market NFT'
-  MARKETPLACE_TOKEN_CONTRACT_JSON_PATH: 'assets/MarketNFT.json'
+  *LUNGO_NFT_CONTRACT_ADDRESS: 'Contract Address LUNGO NFT'
+  
+  *LUNGO_NFT_CONTRACT_JSON_PATH: 'assets/LungoNFT.json'
+  
+  *LUNGO_TOKEN_CONTRACT_ADDRESS: 'Contract Address LUNGO Token'
+  
+  *LUNGO_TOKEN_CONTRACT_JSON_PATH: 'assets/LungoToken.json'
+  
+  *MARKETPLACE_CONTRACT_ADDRESS: 'Contract Address Market NFT'
+  
+  *MARKETPLACE_TOKEN_CONTRACT_JSON_PATH: 'assets/MarketNFT.json'
 
 
 5. Execute the following commands on the folder
