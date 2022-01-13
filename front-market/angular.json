@@ -23,7 +23,7 @@
             "allowedCommonJsDependencies": [
               "lodash"
             ],
-            "outputPath": "dist/front-market",
+            "outputPath": "docs",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
