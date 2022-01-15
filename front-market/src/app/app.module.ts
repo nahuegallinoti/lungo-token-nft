@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,7 +9,9 @@ import { AccountDataComponent } from './components/account-data/account-data.com
 import { MintNftComponent } from './components/mint-nft/mint-nft.component';
 import { NftDataComponent } from './components/nft-data/nft-data.component';
 import { MarketComponent } from './components/market/market.component';
-import { MyNftListComponent } from './components/my-nft-list/my-nft-list.component';
+import { MyNftListComponent } from './components/nft-listed/nft-list.component';
+import { ToastComponent } from './components/shared/toast/toast.component';
+import { NftStakedComponent } from './components/nft-staked/nft-staked.component';
 
 @NgModule({
   declarations: [
@@ -19,10 +22,13 @@ import { MyNftListComponent } from './components/my-nft-list/my-nft-list.compone
     NftDataComponent,
     MarketComponent,
     MyNftListComponent,
+    ToastComponent,
+    NftStakedComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

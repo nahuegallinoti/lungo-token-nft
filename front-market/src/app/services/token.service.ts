@@ -36,7 +36,7 @@ export class TokenService {
   }
 
   async getAddress(): Promise<any> {
-    return await this.web3.provider.selectedAddress;
+    return await this.web3.provider.selectedAddress;    
   }
 
   async getBalance(account: string): Promise<any> {
@@ -50,4 +50,5 @@ export class TokenService {
   async signTransaction(message: string): Promise<void> {
     return await this.signer.signMessage(message);
   }
+
 }

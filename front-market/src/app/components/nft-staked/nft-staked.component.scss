@@ -9,18 +9,18 @@
     align-items: center;
     justify-content: center;
   }
-
+  
   .nft-item {
     min-width: 200px;
     margin-top: 5vh;
   }
-
+  
   .btn-list {
     display: flex;
     flex-direction: row;
     column-gap: 20px;
   }
-
+  
   .data-lists {
     margin-top: 10px;
     display: flex;
@@ -31,32 +31,38 @@
     background-color: #f5f5f5;
   }
   
-  .div-deslist {
+  .div-unstake {
     display: flex;
     justify-content: center;
   }
-
-
-  .btn-deslist {
+  
+  
+  .btn-unstake {
     margin: 10px 10px 10px 10px;
     min-width: 100px;
-
+  
   }
-
+  
   .list-title {
     margin: 2vh 0vh 0vh 2vh;
     display: flex;
     justify-content: center;
     align-items: center;
   }
-
-  .show-snack {
+  
+  .nft-id {
+    margin: 2vh 0vh 0vh 2vh;
     display: flex;
-    position: absolute;
-    top: 1vh;
-    left: 30%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
   }
-
-  .toast {
-    width: auto;
+  
+  
+  .coin-symbol {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    font-size: 15px;
   }

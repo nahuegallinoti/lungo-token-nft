@@ -4,33 +4,35 @@
       [ngClass]="{'btn-secondary': list_nft.length != 0,'btn-primary': list_nft.length == 0}">
       {{ list_nft.length == 0 ? 'Show My NFTs' : 'Hide NFTs' }}</button>
   </div>
-  
-  <div *ngIf='list_nft.length != 0' >
-    <h1 class="nft-title">My NFTs</h1>
-    <h1 class="nft-title" *ngIf='nftCount != -1'>Total: {{nftCount}}</h1>
-  <div class="nft-list">
-    <div class="nft-item" *ngFor="let nft of list_nft">
-      <h3>NFT Id: {{nft}}</h3>
 
-      <div class="input-group input-group-sm mb-3">
-        <span class="input-group-text" id="inputGroup-sizing-sm">Price</span>
-        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-      </div>
-      <div class="actions-nft">
-        <input type="button" class="btn-approve btn btn-success" value="Approve" (click)="approve(nft)">
-        <input type="button" class="btn-sell btn btn-danger" value="Sell" (click)="sell(nft)">
+  <div *ngIf='nftCount != -1'>
+    <h1 class="nft-title">My NFTs</h1>
+    <h1 class="nft-title">Total: {{nftCount}}</h1>
+  </div>
+
+  <div *ngIf='list_nft.length != 0'>
+    <div class="nft-list">
+      <div class="nft-item" *ngFor="let nft of list_nft">
+        <h3 class="nft-id">NFT Id: {{nft.id}}</h3>
+
+        <div class="input-group input-group-sm mb-3">
+          <span class="input-group-text" id="inputGroup-sizing-sm">Price</span>
+          <input [(ngModel)]='nft.price' type="text" class="form-control" aria-label="Sizing example input"
+            aria-describedby="inputGroup-sizing-sm">
+          <label class="coin-symbol">LUN</label>
+        
+          <div><input type="button" class="btn-approve btn btn-success" value="Approve Sell" (click)="approveSell(nft)">
+            <input type="button" class="btn-sell btn btn-danger" value="Sell" (click)="sell(nft)">
+          </div>
+        </div>
+        
+        <div class="actions-nft">
+          <input type="button" class="btn-sell btn btn-success" value="Approve Stake" (click)="approveStake(nft)">
+          <input type="button" class="btn-sell btn btn-primary" value="Stake" (click)="stake(nft)">
+
+        </div>
       </div>
     </div>
   </div>
-</div>
-  <div class="toast" role="alert" aria-live="assertive" aria-atomic="true"
-    [ngClass]="{'show-snack': message.data, 'hide-snack': !message.data}">
-    <div class="toast-header">
-      <img src="assets/check.png" width="50px" class="rounded me-2" alt="Success mint">
-      <strong class="me-auto">{{message.action}}</strong>
-    </div>
-    <div class="toast-body">
-      {{message.data}}
-    </div>
-    <button (click)='hideToast()' type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-  </div>
+
+  <app-toast [message]='message'></app-toast>

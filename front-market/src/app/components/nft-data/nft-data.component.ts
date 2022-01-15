@@ -3,12 +3,20 @@ import { Account } from 'src/app/models/account';
 import { ContractService } from 'src/app/services/contract.service';
 import { TokenService } from 'src/app/services/token.service';
 import { ContractData, ContractName } from 'src/app/models/enum-contracts';
+import { Message } from 'src/app/models/message';
+
+export interface NFT {
+  id: number;
+  price: string;
+  
+}
 
 @Component({
   selector: 'app-nft-data',
   templateUrl: './nft-data.component.html',
   styleUrls: ['./nft-data.component.scss']
 })
+
 export class NftDataComponent implements OnInit {
 
   @Input() account: Account = {
@@ -16,20 +24,21 @@ export class NftDataComponent implements OnInit {
     balance: '',
   };
 
+
   contracts_data: ContractData = new ContractData();
 
   nftCount: number = -1;
-  list_nft: any[] = [];
+  list_nft: NFT[] = [];
 
   nft_contract: any;
   token_contract: any;
   market_contract: any;
-
-  price: string = '';
-
-  message = {
+  stake_nft_contract: any;
+  
+  message: Message = {
     action: '',
-    data: ''
+    data: '',
+    message: ''
   }
 
   constructor(private _contractService: ContractService, private _tokenService: TokenService) {
@@ -37,6 +46,7 @@ export class NftDataComponent implements OnInit {
     this.setNFTContract();
     this.setTokenContract();
     this.setMarketContract();
+    this.setStakeContract();
   }
 
   ngOnInit(): void {
@@ -74,6 +84,16 @@ export class NftDataComponent implements OnInit {
     });
   }
 
+  private async setStakeContract() {
+    let stakeNFT = this.contracts_data.contracts.find(x => x.contract_name == ContractName.STAKING_NFT);
+
+    if (stakeNFT == undefined)
+      return;
+
+    this._contractService.getContract(stakeNFT?.contract_abi, stakeNFT?.contract_address).then(contract => {
+      this.stake_nft_contract = contract;
+    });
+  }
 
   private async countNFT() {
     this.nftCount = -1;
@@ -90,6 +110,7 @@ export class NftDataComponent implements OnInit {
 
     if (this.list_nft.length != 0) {
       this.list_nft = [];
+      this.nftCount = -1;
       return;
     }
 
@@ -98,11 +119,15 @@ export class NftDataComponent implements OnInit {
     if (this.nftCount == -1)
       return;
 
-      let result: any[] = [];
+    let result: any[] = [];
 
     for (let i = 0; i < this.nftCount; i++) {
       await this.nft_contract.tokenOfOwnerByIndex(this.account.address, i).then((token: any) => {
-        result.push(token);
+        let nft: NFT = {
+          id: token,
+          price: ''
+        }
+        result.push(nft);
       }).catch((err: any) => {
         alert(err.message);
       });
@@ -114,51 +139,122 @@ export class NftDataComponent implements OnInit {
 
   }
 
-  async approve(token_id: any) {
+  async approveSell(nft: NFT) {
 
     let market_contract = this.contracts_data.contracts.find(x => x.contract_name == ContractName.MARKET_NFT);
 
-    token_id = Number(token_id).toString()
+    let token_id = Number(nft.id).toString()
 
     await this.nft_contract.approve(market_contract?.contract_address, token_id).then((result: any) => {
       this.message = {
-        action: 'Approve successfully',
+        action: 'Done',
+        message: 'Approve successfully',
         data: result.hash
       };
     }).catch((err: any) => {
       this.message = {
-        action: 'Approve failed',
+        action: 'Fail',
+        message: 'Approve failed',
         data: err.message
       };
     });
   }
 
-  async sell(token_id: any) {
+  async sell(nft: NFT) {
 
-    token_id = Number(token_id).toString()
+    nft.id = Number(nft.id)
+    let price = Number(nft.price).toString() + '000000000000000000'
 
-    //TODO
-    await this.market_contract.addListing(token_id, '10000000000000000000')
-      .then((result: any) => {
-        this.message = {
-          action: 'List successfully',
-          data: result.hash
-        }
-        this.list_nft.splice(this.list_nft.findIndex(x => x == token_id), 1)
-        this.nftCount--
-      }).catch((err: any) => {
-        this.message = {
-          action: 'List failed',
-          data: err.message
-        };
-      });
-  }
+    let isApproved = await this.nft_contract.getApproved(nft.id)
 
-  async hideToast() {
-    this.message = {
-      action: '',
-      data: ''
+    if (isApproved == this.market_contract.address) {
+
+
+      await this.market_contract.addListing(nft.id, price)
+
+        .then((result: any) => {
+          this.message = {
+            action: 'Done',
+            message: 'List successfully',
+            data: result.hash
+          };
+          this.list_nft.splice(this.list_nft.findIndex(x => x.id == nft.id), 1)
+          this.nftCount--
+        }).catch((err: any) => {
+          this.message = {
+            action: 'Fail',
+            message: 'List failed',
+            data: err.message
+          };
+        });
+    }
+
+    else {
+      this.message = {
+        action: 'Fail',
+        message: 'List failed',
+        data: 'You must approve this token before listing'
+      };
     }
   }
+
+  async approveStake(nft: NFT) {
+
+    let stake_contract = this.contracts_data.contracts.find(x => x.contract_name == ContractName.STAKING_NFT);
+
+    let token_id = Number(nft.id).toString()
+
+    await this.nft_contract.approve(stake_contract?.contract_address, token_id).then((result: any) => {
+      this.message = {
+        action: 'Done',
+        message: 'Approve successfully',
+        data: result.hash
+      };
+    }).catch((err: any) => {
+      this.message = {
+        action: 'Fail',
+        message: 'Approve failed',
+        data: err.message
+      };
+    });
+  }
+
+  async stake(nft: NFT) {
+
+    nft.id = Number(nft.id)
+
+    let isApproved = await this.nft_contract.getApproved(nft.id)
+
+    if (isApproved == this.stake_nft_contract.address) {
+
+
+      await this.stake_nft_contract.deposit(nft.id)
+
+        .then((result: any) => {
+          this.message = {
+            action: 'Done',
+            message: 'Stake successfully',
+            data: result.hash
+          };
+          this.list_nft.splice(this.list_nft.findIndex(x => x.id == nft.id), 1)
+          this.nftCount--
+        }).catch((err: any) => {
+          this.message = {
+            action: 'Fail',
+            message: 'Stake failed',
+            data: err.data.message
+          };
+        });
+    }
+
+    else {
+      this.message = {
+        action: 'Fail',
+        message: 'Stake failed',
+        data: 'You must approve this token before stake'
+      };
+    }
+  }
+
 
 }

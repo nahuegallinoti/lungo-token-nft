@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ContractData, ContractName } from 'src/app/models/enum-contracts';
+import { Message } from 'src/app/models/message';
 import { ContractService } from 'src/app/services/contract.service';
 
 @Component({
@@ -10,7 +11,12 @@ import { ContractService } from 'src/app/services/contract.service';
 export class MintNftComponent implements OnInit {
 
   minting: boolean = false;
-  txHash: string = '';
+
+  message: Message = {
+    action: '',
+    data: '',
+    message: ''
+  }
 
   contracts_data: ContractData = new ContractData();
 
@@ -31,20 +37,24 @@ export class MintNftComponent implements OnInit {
   }
 
   async mint() {
-    this.txHash = '';
     this.minting = true;
 
     await this.nft_contract.mint().then((result: any) => {
-      this.txHash = result.hash;
+      this.message = {
+        action: 'Done',
+        message: 'NFT minted successfully',
+        data: result.hash,
+      }
+
     }).catch((err: any) => {
-      console.log(err.message);
+      this.message = {
+        action: 'Fail',
+        message: 'NFT mint failed',
+        data: err.message,
+      }
     });
 
     this.minting = false;
-  }
-
-  async hideToast() {
-    this.txHash = '';
   }
 
 }

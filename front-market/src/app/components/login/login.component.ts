@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Account } from 'src/app/models/account';
+import { Message } from 'src/app/models/message';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -15,6 +16,12 @@ export class LoginComponent implements OnInit {
   constructor(private _tokenService: TokenService) {
   }
 
+  message: Message = {
+    action: '',
+    data: '',
+    message: ''
+  }
+
   ngOnInit(): void {
   }
 
@@ -23,7 +30,7 @@ export class LoginComponent implements OnInit {
       this.isLogin = false;
       this.walletIdEmitter.emit({
         address: '',
-        balance: ''        
+        balance: ''
       });
     }
 
@@ -35,7 +42,14 @@ export class LoginComponent implements OnInit {
             address: account[0],
             balance: ''
           });
-        }, (err) => { console.log(err) })
+        }, (err) => {
+          this.message = {
+            action: 'Fail',
+            message: 'Login failed',
+            data: err.message
+          };
+        })
     }
   }
+
 }

@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { nft_list } from 'src/app/models/nft_listed';
+import { Nft_listed } from 'src/app/models/nft_listed';
 import { ContractService } from 'src/app/services/contract.service';
 import { TokenService } from 'src/app/services/token.service';
 import { ContractData, ContractName } from 'src/app/models/enum-contracts';
+import { Message } from 'src/app/models/message';
 
 @Component({
-  selector: 'app-my-nft-list',
-  templateUrl: './my-nft-list.component.html',
-  styleUrls: ['./my-nft-list.component.scss']
+  selector: 'app-nft-list',
+  templateUrl: './nft-list.component.html',
+  styleUrls: ['./nft-list.component.scss']
 })
 export class MyNftListComponent implements OnInit {
 
@@ -18,13 +19,14 @@ export class MyNftListComponent implements OnInit {
 
   contracts_data: ContractData = new ContractData();
 
-  my_nfts_listed: nft_list[] = []
+  my_nfts_listed: Nft_listed[] = []
   active_listing_count: number = -1
   market_contract: any;
 
-  message = {
+  message: Message = {
     action: '',
-    data: ''
+    data: '',
+    message: ''
   }
 
   ngOnInit(): void {
@@ -49,7 +51,7 @@ export class MyNftListComponent implements OnInit {
       this.my_nfts_listed = [];
       return;
     }
-    
+
     let address = await this._tokenService.getAddress();
 
     await this.market_contract.getListingsByOwnerCount(address).then((count: any) => {
@@ -60,9 +62,11 @@ export class MyNftListComponent implements OnInit {
         this.market_contract.getListingsByOwner(address, i).then((listing_id: any) => {
           this.market_contract.listings(listing_id).then((listing: any) => {
 
-            let nft: nft_list = {
+            let price = Number(listing.price).toString()
+
+            let nft: Nft_listed = {
               token_id: listing.token_id,
-              price: Number(listing.price).toString(),
+              price: price.substring(0, price.length - 18),
               list_id: listing_id
             }
 
@@ -71,18 +75,19 @@ export class MyNftListComponent implements OnInit {
         });
       }
 
-      
+
     });
   }
 
 
-  async deslist(nft: nft_list) {
+  async deslist(nft: Nft_listed) {
 
     let list_id = nft.list_id.toString()
 
     await this.market_contract.removeListing(list_id).then((result: any) => {
       this.message = {
-        action: 'Deslist successfully',
+        action: 'Done',
+        message: 'Deslist successfully',
         data: result.hash
       };
 
@@ -91,18 +96,11 @@ export class MyNftListComponent implements OnInit {
 
     }).catch((err: any) => {
       this.message = {
-        action: 'Deslist failed',
-        data: err.data.message
+        action: 'Fail',
+        message: 'Deslist failed',
+        data: err.message
       };
     });
-
   }
-
-  async hideToast() {
-    this.message = {
-      action: '',
-      data: ''
-    }
-  }  
 
 }

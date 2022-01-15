@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Account } from 'src/app/models/account';
 import { ContractData, ContractName } from 'src/app/models/enum-contracts';
+import { Message } from 'src/app/models/message';
 import { ContractService } from 'src/app/services/contract.service';
 
 @Component({
@@ -13,6 +14,12 @@ export class AccountDataComponent implements OnInit {
   @Input() account: Account = {
     address: '',
     balance: ''
+  }
+
+  message: Message = {
+    action: '',
+    data: '',
+    message: ''
   }
 
   token_contract: any;
@@ -40,9 +47,15 @@ export class AccountDataComponent implements OnInit {
 
   getBalance() {
     this.token_contract.balanceOf(this.account.address).then((balance: any) => {
-      this.account.balance = balance
+      let balanceFixed = Number(balance) / 1000000000000000000;
+
+      this.account.balance = balanceFixed.toString()
     }).catch((err: any) => {
-      console.log(err.message);
+      this.message = {
+        action: 'Fail',
+        message: 'Get balance failed',
+        data: err.message
+      };
     });
   }
 

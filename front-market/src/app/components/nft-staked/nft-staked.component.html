@@ -1,0 +1,27 @@
+<div class="data-lists">
+
+    <div class="btn-list">
+      <button class="btn"
+        [ngClass]="{'btn-secondary': my_nfts_staked.length != 0,'btn-primary': my_nfts_staked.length == 0}"
+        (click)="showStake()">
+        {{ active_staking_count == -1 ? 'Show My NFTs Staked' : 'Hide My NFTs Staked' }}</button>
+    </div>
+  
+    <div *ngIf='active_staking_count != -1'>
+  
+      <h1 class="list-title">My NFT's Staked</h1>
+      <h1 class="list-title">Total: {{my_nfts_staked.length}}</h1>
+      <div class="nft-list">
+        <div class="nft-item" *ngFor="let nft of my_nfts_staked">
+          <h3 class="nft-id">NFT Id: {{nft}}</h3>
+          <div class="div-unstake">
+            <input type="button" class="btn-unstake btn btn-success" value="Unstake" (click)="unstake(nft)">
+          </div>
+        </div>
+      </div>
+
+      <h1 class="list-title">Current Reward: {{current_reward}} STT</h1>
+    </div>
+  </div>
+  
+  <app-toast [message]='message'></app-toast>

@@ -1,4 +1,4 @@
-export interface nft_list {
+export interface Nft_listed {
   token_id: string;
   price: string;
   list_id: string;

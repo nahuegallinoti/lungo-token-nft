@@ -1,0 +1,12 @@
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true"
+  [ngClass]="{'show-snack': message.data, 'hide-snack': !message.data}">
+  <div class="toast-header">
+    <img [src]="message.action == 'Done' ? 'assets/check.png' : 'assets/fail.png'" width="30px" class="rounded me-2"
+      alt="Success mint">
+    <strong class="me-auto">{{message.message}}</strong>
+  </div>
+  <div class="toast-body">
+    {{message.data}}
+  </div>
+  <button (click)='hideToast()' type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+</div>
