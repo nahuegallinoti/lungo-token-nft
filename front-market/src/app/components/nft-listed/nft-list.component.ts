@@ -67,7 +67,8 @@ export class MyNftListComponent implements OnInit {
             let nft: Nft_listed = {
               token_id: listing.token_id,
               price: price.substring(0, price.length - 18),
-              list_id: listing_id
+              list_id: listing_id,
+              // image: ''
             }
 
             this.my_nfts_listed.push(nft)

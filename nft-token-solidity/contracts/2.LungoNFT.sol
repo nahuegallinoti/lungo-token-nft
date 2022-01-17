@@ -15,6 +15,11 @@ contract LungoNFT is ERC721, ERC721Enumerable {
     supply += 1;
   }
 
+  function tokenURI(uint256 tokenId) public view virtual override returns (string memory) {
+    require(_exists(tokenId), "ERC721Metadata: URI query for nonexistent token");
+    return "https://ipfs.io/ipfs/QmYyJNTadRaMuTBo796oARMXJ8CVNxDLy8v83GUnf1pcJL";
+  }
+
   function supportsInterface(bytes4 interfaceId) public view override(ERC721, ERC721Enumerable) returns (bool)
   {
     return super.supportsInterface(interfaceId);

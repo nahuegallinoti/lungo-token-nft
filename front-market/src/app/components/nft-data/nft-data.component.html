@@ -14,22 +14,22 @@
     <div class="nft-list">
       <div class="nft-item" *ngFor="let nft of list_nft">
         <h3 class="nft-id">NFT Id: {{nft.id}}</h3>
+        <img class="nft-image" src="{{nft.image}}" alt="nft_image" width="200px" height="200px">
+        <div class="nft-inputs input-group input-group-sm mb-3">
+          <div>
+            <span class="input-group-text" id="inputGroup-sizing-sm">Price</span>
+            <input [(ngModel)]='nft.price' type="text" class="form-control" aria-label="Sizing example input"
+              aria-describedby="inputGroup-sizing-sm" placeholder="(LUN)">
 
-        <div class="input-group input-group-sm mb-3">
-          <span class="input-group-text" id="inputGroup-sizing-sm">Price</span>
-          <input [(ngModel)]='nft.price' type="text" class="form-control" aria-label="Sizing example input"
-            aria-describedby="inputGroup-sizing-sm">
-          <label class="coin-symbol">LUN</label>
-        
-          <div><input type="button" class="btn-approve btn btn-success" value="Approve Sell" (click)="approveSell(nft)">
-            <input type="button" class="btn-sell btn btn-danger" value="Sell" (click)="sell(nft)">
           </div>
         </div>
-        
+        <div class="actions-nft">
+          <input type="button" class="btn-sell btn btn-success" value="Approve Sell" (click)="approveSell(nft)">
+          <input type="button" class="btn-sell btn btn-danger" value="Sell" (click)="sell(nft)">
+        </div>
         <div class="actions-nft">
           <input type="button" class="btn-sell btn btn-success" value="Approve Stake" (click)="approveStake(nft)">
           <input type="button" class="btn-sell btn btn-primary" value="Stake" (click)="stake(nft)">
-
         </div>
       </div>
     </div>

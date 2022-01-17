@@ -14,7 +14,7 @@ contract Staking is ERC20
     uint public REWARD_PER_BLOCK = 0.1 ether;
 
     constructor() ERC20("Staking Token", "STT"){
-        my_nft = ERC721(0x19C146C4f7F96f48659bb5CCDe2B7261b66f8846);
+        my_nft = ERC721(0x13Ad9A3824Ef8A6cB4f959403Ca069aeaccED2bA);
     }
 
     function deposit(uint256 tokenId) external

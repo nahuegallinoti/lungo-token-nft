@@ -4,11 +4,12 @@ import { ContractService } from 'src/app/services/contract.service';
 import { TokenService } from 'src/app/services/token.service';
 import { ContractData, ContractName } from 'src/app/models/enum-contracts';
 import { Message } from 'src/app/models/message';
+import { NftService } from 'src/app/services/nft.service';
 
 export interface NFT {
   id: number;
   price: string;
-  
+  image: string;
 }
 
 @Component({
@@ -34,14 +35,14 @@ export class NftDataComponent implements OnInit {
   token_contract: any;
   market_contract: any;
   stake_nft_contract: any;
-  
+
   message: Message = {
     action: '',
     data: '',
     message: ''
   }
 
-  constructor(private _contractService: ContractService, private _tokenService: TokenService) {
+  constructor(private _contractService: ContractService, private _tokenService: TokenService, private _nftService: NftService) {
 
     this.setNFTContract();
     this.setTokenContract();
@@ -126,10 +127,13 @@ export class NftDataComponent implements OnInit {
     let account = await this._tokenService.getAddress();
 
     for (let i = 0; i < this.nftCount; i++) {
+
       await this.nft_contract.tokenOfOwnerByIndex(account, i).then((token: any) => {
+
         let nft: NFT = {
           id: token,
-          price: ''
+          price: '',
+          image: ''
         }
         result.push(nft);
       }).catch((err: any) => {
@@ -140,6 +144,10 @@ export class NftDataComponent implements OnInit {
     this.list_nft = result.sort((a, b) => {
       return a - b;
     })
+
+    this._nftService.getNFTImage(this.list_nft).then((result) => {
+      this.list_nft = result;
+    });
 
   }
 
