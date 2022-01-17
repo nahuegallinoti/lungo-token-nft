@@ -3,6 +3,7 @@ import { Account } from 'src/app/models/account';
 import { ContractData, ContractName } from 'src/app/models/enum-contracts';
 import { Message } from 'src/app/models/message';
 import { ContractService } from 'src/app/services/contract.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-account-data',
@@ -11,7 +12,7 @@ import { ContractService } from 'src/app/services/contract.service';
 })
 export class AccountDataComponent implements OnInit {
 
-  @Input() account: Account = {
+  account: Account = {
     address: '',
     balance: ''
   }
@@ -26,11 +27,15 @@ export class AccountDataComponent implements OnInit {
 
   contracts_data: ContractData = new ContractData();
 
-  constructor(private _contractService: ContractService) {
+  constructor(private _contractService: ContractService, private _tokenService: TokenService) {
     this.setTokenContract();
   }
 
   ngOnInit(): void {
+    this._tokenService.getAddress().then((account) => {
+      this.account.address = account;
+    });
+
   }
 
   private async setTokenContract() {
@@ -46,6 +51,7 @@ export class AccountDataComponent implements OnInit {
 
 
   getBalance() {
+
     this.token_contract.balanceOf(this.account.address).then((balance: any) => {
       let balanceFixed = Number(balance) / 1000000000000000000;
 

@@ -32,7 +32,7 @@ export class TokenService {
   }
 
   async enableMetaMaskAccount(): Promise<any> {
-    return await this.web3.send("eth_requestAccounts", []);
+    return await this.web3.send("eth_requestAccounts", []);    
   }
 
   async getAddress(): Promise<any> {

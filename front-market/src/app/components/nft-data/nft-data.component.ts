@@ -98,7 +98,9 @@ export class NftDataComponent implements OnInit {
   private async countNFT() {
     this.nftCount = -1;
 
-    await this.nft_contract.balanceOf(this.account.address).then((result: any) => {
+    let account = await this._tokenService.getAddress();
+
+    await this.nft_contract.balanceOf(account).then((result: any) => {
       this.nftCount = result;
     }).catch((err: any) => {
       console.log(err.message);
@@ -121,8 +123,10 @@ export class NftDataComponent implements OnInit {
 
     let result: any[] = [];
 
+    let account = await this._tokenService.getAddress();
+
     for (let i = 0; i < this.nftCount; i++) {
-      await this.nft_contract.tokenOfOwnerByIndex(this.account.address, i).then((token: any) => {
+      await this.nft_contract.tokenOfOwnerByIndex(account, i).then((token: any) => {
         let nft: NFT = {
           id: token,
           price: ''

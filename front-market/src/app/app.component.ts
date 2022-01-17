@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateWallet(wallet: Account) {
+  updateWallet(wallet: Account) {    
     this.account = wallet;
 
   }
