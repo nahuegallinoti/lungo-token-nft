@@ -19,6 +19,8 @@ Actions allowed
 
 +Buy NFT
 
++Stake NFT for tokens reward
+
 
 nft-token-solidity
 -------------------
