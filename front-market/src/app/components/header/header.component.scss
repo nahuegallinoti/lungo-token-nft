@@ -7,5 +7,16 @@
   }
   
   .label-account {
-      margin-right: 2vh;
+      padding-right: 30vh;
+      color: white;
+  }
+
+  .title {
+      margin-left: 2vh;
+  }
+
+  .item:hover {
+    color: #ffffff !important;
+    transform: scale(1.2);
+    cursor: pointer;
   }

@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+.root {
+    background-color: #0F1624;
+}
+
+.nav-link {
+    color: rgba(236, 227, 227, 0.883) !important;
+}
+
+.big-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 2vh 0vh 0vh 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.medium-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin: 2vh 0vh 0vh 2vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.small-title {
+    font-size: 1.5rem;    
+    color: #ffffff;
+    margin: 0vh 0vh 0vh 0vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.small-label {
+    font-size: 1rem;    
+    color: #ffffff;
+    margin: 1vh 0vh 0vh 0vh;
+    display: flex;
+    justify-content: left;
+}

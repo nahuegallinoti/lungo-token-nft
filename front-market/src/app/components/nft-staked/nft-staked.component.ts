@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ContractData, ContractName } from 'src/app/models/enum-contracts';
 import { Message } from 'src/app/models/message';
+import { NFT } from 'src/app/models/NFT';
 import { ContractService } from 'src/app/services/contract.service';
+import { NftService } from 'src/app/services/nft.service';
 import { TokenService } from 'src/app/services/token.service';
 
 @Component({
@@ -11,7 +13,7 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class NftStakedComponent implements OnInit {
 
-  constructor(private _tokenService: TokenService, private _contractService: ContractService) {
+  constructor(private _tokenService: TokenService, private _contractService: ContractService, private _nftService: NftService) {
     this.setStakeContract();
   }
 
@@ -26,6 +28,8 @@ export class NftStakedComponent implements OnInit {
   }
 
   my_nfts_staked: any[] = [];
+  staked_NFT: NFT[] = [];
+
   active_staking_count: number = -1;
 
   ngOnInit(): void {
@@ -62,8 +66,20 @@ export class NftStakedComponent implements OnInit {
 
       this.staking_contract.deposited_tokens(address).then((nft_id: any) => {
         let token_id = Number(nft_id).toString()
-        this.active_staking_count = 1
-        this.my_nfts_staked.push(token_id)
+
+        this._nftService.getNFTImageById(token_id).then((image: any) => {
+
+          let nft: NFT = {
+            id: Number(token_id),
+            image: image,
+            price: ''
+          }
+
+          this.active_staking_count = 1
+          this.my_nfts_staked.push(nft)
+  
+        });
+
       });
 
       

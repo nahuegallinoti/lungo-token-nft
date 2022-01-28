@@ -1,20 +1,20 @@
 <div class="data-lists">
 
   <div class="btn-list">
-    <button class="btn"
-      [ngClass]="{'btn-secondary': my_nfts_listed.length != 0,'btn-primary': my_nfts_listed.length == 0}"
-      (click)="showList()">
+    <button class="btn btn-primary" (click)="showList()">
       {{ active_listing_count == -1 ? 'Show My NFTs Listed' : 'Hide My NFTs listed' }}</button>
   </div>
 
   <div *ngIf='active_listing_count != -1'>
 
-    <h1 class="list-title">My NFT's Listed</h1>
-    <h1 class="list-title">Total: {{my_nfts_listed.length}}</h1>
+    <h1 class="big-title">My NFT's Listed</h1>
+    <h1 class="medium-title">Total: {{my_nfts_listed.length}}</h1>
     <div class="nft-list">
       <div class="nft-item" *ngFor="let nft of my_nfts_listed">
-        <h3 class="nft-id">NFT Id: {{nft.token_id}}</h3>
-        <h3 class="nft-price">Price</h3>
+        <h3 class="small-title">NFT Id: {{nft.token_id}}</h3>
+        <img class="nft-image" src="{{nft.image}}" alt="nft_image" width="200px" height="200px">
+
+        <h3 class="small-label">Price</h3>
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroup-sizing-xl">{{nft.price}} LUN</span>
         </div>

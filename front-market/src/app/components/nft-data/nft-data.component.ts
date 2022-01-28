@@ -5,12 +5,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { ContractData, ContractName } from 'src/app/models/enum-contracts';
 import { Message } from 'src/app/models/message';
 import { NftService } from 'src/app/services/nft.service';
-
-export interface NFT {
-  id: number;
-  price: string;
-  image: string;
-}
+import { NFT } from 'src/app/models/NFT';
 
 @Component({
   selector: 'app-nft-data',

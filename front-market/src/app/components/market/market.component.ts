@@ -4,6 +4,7 @@ import { TokenService } from 'src/app/services/token.service';
 import { Nft_listed } from '../../models/nft_listed';
 import { Message } from '../../models/message';
 import { ContractService } from '../../services/contract.service';
+import { NftService } from 'src/app/services/nft.service';
 
 @Component({
   selector: 'app-market',
@@ -32,7 +33,7 @@ export class MarketComponent implements OnInit {
   contracts_data: ContractData = new ContractData();
 
 
-  constructor(private _contractService: ContractService, private _tokenService: TokenService) {
+  constructor(private _contractService: ContractService, private _tokenService: TokenService, private _nftService: NftService) {
     this.setMarketContract();
     this.setTokenContract();
 
@@ -78,15 +79,18 @@ export class MarketComponent implements OnInit {
           this.market_contract.listings(listing_id).then((listing: any) => {
 
             let price = Number(listing.price).toString()
+            this._nftService.getNFTImageById(listing_id).then((image: any) => {
 
             let nft: Nft_listed = {
               token_id: listing.token_id,
               price: price.substring(0, price.length - 18),
-              list_id: listing_id
+              list_id: listing_id,
+              image: image
             }
 
             this.nft_listed.push(nft)
           });
+        });
         });
       }
 

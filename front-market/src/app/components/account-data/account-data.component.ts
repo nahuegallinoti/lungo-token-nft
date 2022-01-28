@@ -51,7 +51,7 @@ export class AccountDataComponent implements OnInit {
 
 
   getBalance() {
-
+    
     this.token_contract.balanceOf(this.account.address).then((balance: any) => {
       let balanceFixed = Number(balance) / 1000000000000000000;
 

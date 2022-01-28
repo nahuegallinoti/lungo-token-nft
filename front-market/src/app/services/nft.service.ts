@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BigNumber, ethers } from "ethers";
-import { NFT } from '../components/nft-data/nft-data.component';
 import { ContractData, ContractName } from '../models/enum-contracts';
 import { ContractService } from './contract.service';
 
@@ -52,6 +51,16 @@ export class NftService {
     }
 
     return list_nft;
+
+  }
+
+  async getNFTImageById(token_id: any): Promise<any[]> {
+
+    let uri = await this.nft_contract.tokenURI(token_id)
+    let result = await fetch(uri)
+    let jsonResult = await result.json()
+
+    return jsonResult.image;
 
   }
 
