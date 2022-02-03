@@ -5,6 +5,8 @@ export const DivCenter = styled.div`
 display: flex;
 justify-content: center;
 align-items: center;
+flex-direction: row;
+flex-wrap: wrap;
 `;
 
 export const ListItem = styled.li`

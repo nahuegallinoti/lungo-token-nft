@@ -25,6 +25,8 @@ const MintNFT = () => {
 
 
     } catch (err) {
+      setIsMinting(false);
+      showNotification('error', 'Mint canceled by user', 'topRight', 3000);
       console.log(err);
     }
   }

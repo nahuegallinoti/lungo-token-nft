@@ -12,7 +12,7 @@ const NFT = (props) => {
                 <ListItem>Price: {nft.price}</ListItem>
                 <ListItem>List Id: {nft.list_id}</ListItem>
                 <br />
-                <img src={nft.image} alt="Lungo Logo" width={300} height={200} />
+                <img src={nft.image} alt="Lungo Logo" width={400} height={250} />
             </ListContainer>
         </>
     );

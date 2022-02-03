@@ -5,6 +5,7 @@ import lungoTokenABI from '../Shared/contracts/LungoToken.json';
 import marketABI from '../Shared/contracts/MarketNFT.json';
 import nftABI from '../Shared/contracts/LungoNFT.json';
 import { formatEther } from '../Shared/funcs/funcs';
+import { getNFTImageById } from '../Shared/funcs/nftContractFunctions';
 import GetContractInstance from "../../services/ContractFactory";
 import { MintButton } from "../Navbar/NavbarElements";
 import { DivCenter } from '../Shared/GlobalElements';
@@ -29,6 +30,7 @@ const MarketNFT = () => {
         setMarketContract(GetContractInstance(MARKETPLACE_CONTRACT_ADDRESS, marketABI));
         setLungoTokenContract(GetContractInstance(LUNGO_TOKEN_CONTRACT_ADDRESS, lungoTokenABI));
         setNFTContract(GetContractInstance(LUNGO_NFT_CONTRACT_ADDRESS, nftABI));
+        showMarket();
     }, []);
 
     const showMarket = async () => {
@@ -45,7 +47,7 @@ const MarketNFT = () => {
                     listing_id = listing_id.toNumber();
                     marketContract.listings(listing_id).then((listing) => {
 
-                        getNFTImageById(listing_id).then((image) => {
+                        getNFTImageById(listing.token_id.toNumber()).then((image) => {
                             let nft = {
                                 token_id: listing.token_id.toNumber(),
                                 price: formatEther(listing.price),
@@ -55,7 +57,10 @@ const MarketNFT = () => {
                             nfts.push(nft)
                         }).then(() => {
                             if (nfts.length === count) {
-                                setNFTListed(nfts);
+                                let nfts2 = nfts.sort((a, b) => {
+                                    return a.token_id - b.token_id;
+                                });
+                                setNFTListed(nfts2);
                                 setNftsLoaded(true);
                             }
                         });
@@ -63,14 +68,6 @@ const MarketNFT = () => {
                 });
             }
         });
-    }
-
-    const getNFTImageById = async (tokenId) => {
-        let uri = await NFTContract.tokenURI(tokenId);
-        let result = await fetch(uri);
-        let jsonResult = await result.json();
-
-        return jsonResult.image;
     }
 
     return (
