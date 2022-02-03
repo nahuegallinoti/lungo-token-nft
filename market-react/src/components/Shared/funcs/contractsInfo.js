@@ -1,0 +1,24 @@
+//LOCAL
+
+// export const LUNGO_NFT_CONTRACT_ADDRESS = "0x17Db5ED08064445cE0C3f2b452B4BFA3d93a71F4";
+// export const LUNGO_NFT_CONTRACT_JSON_ABI = 'public/contracts/LungoNFT.json';
+// export const LUNGO_TOKEN_CONTRACT_ADDRESS = "0xfB13B339a00A821034e0010080870fCEC9D289CA";
+// export const LUNGO_TOKEN_CONTRACT_JSON_ABI = 'public/contracts/LungoToken.json';
+// export const MARKETPLACE_CONTRACT_ADDRESS = "0x291456B29c26FC69e168d1b4126De5c00025c004";
+// export const MARKETPLACE_TOKEN_CONTRACT_JSON_ABI = 'public/contracts/MarketNFT.json';
+// export const ERC20_OPERATOR_CONTRACT_ADDRESS = "0x9e871b4d4004124d1e4F706cc4f6743aD6fAf072";
+// export const ERC20_OPERATOR_CONTRACT_JSON_ABI = 'public/contracts/ERC20Operator.json';
+// export const STAKING_NFT_CONTRACT_ADDRESS = "0x330a22EcC6e59725340bfbF02E568Ce2566FDA90";
+// export const STAKING_NFT_CONTRACT_JSON_ABI = 'public/contracts/StakingNFT.json';
+
+//RINKEBY
+export const LUNGO_NFT_CONTRACT_ADDRESS = "0xBdddd9deAd27005c85C6FCc80bC879109CF97d5d";
+export const LUNGO_NFT_CONTRACT_JSON_ABI = 'public/contracts/LungoNFT.json';
+export const LUNGO_TOKEN_CONTRACT_ADDRESS = "0x4A8aB6a7a8620F75D0E9181b5DF803b4Eb05f62F";
+export const LUNGO_TOKEN_CONTRACT_JSON_ABI = 'public/contracts/LungoToken.json';
+export const MARKETPLACE_CONTRACT_ADDRESS = "0x1690622426d165C2bfd729D7d84E53Df84f88BaA";
+export const MARKETPLACE_TOKEN_CONTRACT_JSON_ABI = 'public/contracts/MarketNFT.json';
+export const ERC20_OPERATOR_CONTRACT_ADDRESS = "0x9e871b4d4004124d1e4F706cc4f6743aD6fAf072";
+export const ERC20_OPERATOR_CONTRACT_JSON_ABI = 'public/contracts/ERC20Operator.json';
+export const STAKING_NFT_CONTRACT_ADDRESS = "0xa32182E25432a4B25864593d6686c729Ad9B4Df8";
+export const STAKING_NFT_CONTRACT_JSON_ABI = 'public/contracts/StakingNFT.json';
