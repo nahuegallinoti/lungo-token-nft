@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import lungoNftABI from '../Shared/contracts/LungoNFT.json';
 import GetContractInstance from "../../services/ContractFactory";
 import { MainTitle, MintButton } from '../Navbar/NavbarElements';
-import {LUNGO_NFT_CONTRACT_ADDRESS} from '../Shared/funcs/contractsInfo';
+import { LUNGO_NFT_CONTRACT_ADDRESS } from '../Shared/funcs/contractsInfo';
 import { showNotification } from "../Shared/funcs/funcs";
 
 const MintNFT = () => {
