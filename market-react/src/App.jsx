@@ -1,40 +1,45 @@
-import './App.css';
-import Navbar from './components/Navbar';
 import {
   BrowserRouter as Router,
   Routes,
-  Route
+  Route,
 } from 'react-router-dom';
-import MintNFTPage from './pages/mint';
-import LoginPage from './pages/login';
-import MarketPage from './pages/market';
-import MyNFTPage from './pages/my-nft';
-import ListingsPage from './pages/listings';
-import StakingPage from './pages/staking';
-
-import { AccountContext } from './components/Context/AccountContext';
 import { useState } from 'react';
 
-function App() {
+import { HomeScreen } from './components/home/HomeScreen.jsx';
+import { MintScreen } from './components/mint/MintScreen.jsx';
+import { ListingsScreen } from './components/listings/ListingsScreen';
+import { StakingScreen } from './components/staking/StakingScreen.jsx';
+import { MyNFTScreen } from './components/mynft/MyNFTScreen.jsx';
+import { MarketScreen } from './components/market/MarketScreen.jsx';
+import { NavbarComponent } from './components/shared/NavbarComponent.jsx';
 
+import { AccountContext } from './context/AccountContext.jsx';
+
+
+import './App.css';
+
+function App() {
+  
   const [account, setAccount] = useState(null);
 
   return (
-        <AccountContext.Provider value={{ account, setAccount }}>
-          <Router>
-            <Navbar />
-            <Routes>
-              <Route path="/" element={<LoginPage />} />
-              <Route path="/mint" element={<MintNFTPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/market" element={<MarketPage />} />
-              <Route path="/my-nft" element={<MyNFTPage />} />
-              <Route path="/listings" element={<ListingsPage />} />
-              <Route path="/staking" element={<StakingPage />} />
-            </Routes>
-          </Router>
-        </AccountContext.Provider>
-  );
+
+    <AccountContext.Provider value={{ account, setAccount }} >
+      <Router>
+        <NavbarComponent/>
+        <Routes>
+          <Route path="/" element={<HomeScreen />} />
+          <Route path="mint" element={<MintScreen />} />
+          <Route path="listings" element={<ListingsScreen />} />
+          <Route path="staking" element={<StakingScreen />} />
+          <Route path="my-nft" element={<MyNFTScreen />} />
+          <Route path="market" element={<MarketScreen />} />
+          <Route path="*" element={<HomeScreen />} />
+        </Routes>
+      </Router>
+    </AccountContext.Provider>
+
+  )
 }
 
-export default App;
+export default App
