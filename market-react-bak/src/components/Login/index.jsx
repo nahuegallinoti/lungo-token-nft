@@ -9,8 +9,17 @@ const Login = () => {
   const { account } = useContext(AccountContext);
 
   return (
-    account ?
-      <AccountData address={account}></AccountData> : <CursorLink onClick={ConnectWalletHandler}>Click here to connect Metamask</CursorLink>
+    account 
+    ? <AccountData 
+        address={account}
+      >
+      </AccountData> 
+
+    : <CursorLink 
+        onClick={ConnectWalletHandler}
+      >
+        Click here to connect Metamask
+      </CursorLink>
   );
 
 };
