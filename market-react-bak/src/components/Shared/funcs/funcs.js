@@ -10,10 +10,14 @@ const {
     ethereum
 } = window;
 
-export const ConnectWalletHandler = async () => {
+export const ConnectWalletHandler = async (_account = null) => {
 
     if (!ethereum) {
         alert("Please install Metamask!");
+    }
+
+    if (_account) {
+        return null;
     }
 
     let account = await getAccount();

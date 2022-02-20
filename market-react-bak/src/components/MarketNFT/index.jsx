@@ -5,7 +5,7 @@ import lungoTokenABI from '../Shared/contracts/LungoToken.json';
 import marketABI from '../Shared/contracts/MarketNFT.json';
 import nftABI from '../Shared/contracts/LungoNFT.json';
 import { formatEther } from '../Shared/funcs/funcs';
-import { getNFTImageById } from '../Shared/funcs/nftContractFunctions';
+import { GetNFTImageById } from '../Shared/funcs/nftContractFunctions';
 import GetContractInstance from "../../services/ContractFactory";
 import { MintButton } from "../Navbar/NavbarElements";
 import { DivCenter } from '../Shared/GlobalElements';
@@ -47,7 +47,7 @@ const MarketNFT = () => {
                     listing_id = listing_id.toNumber();
                     marketContract.listings(listing_id).then((listing) => {
 
-                        getNFTImageById(listing.token_id.toNumber()).then((image) => {
+                        GetNFTImageById(listing.token_id.toNumber()).then((image) => {
                             let nft = {
                                 token_id: listing.token_id.toNumber(),
                                 price: formatEther(listing.price),

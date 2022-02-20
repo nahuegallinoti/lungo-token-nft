@@ -5,7 +5,7 @@ import {
 import nftABI from '../data/LungoNFT.json';
 
 
-export const getNFTImageById = async (tokenId) => {
+export const GetNFTImageById = async (tokenId) => {
 
   const NFTContract = GetContractInstance(LUNGO_NFT_CONTRACT_ADDRESS, nftABI);
 
@@ -17,4 +17,4 @@ export const getNFTImageById = async (tokenId) => {
 
 }
 
-export default getNFTImageById();
+export default GetNFTImageById();
