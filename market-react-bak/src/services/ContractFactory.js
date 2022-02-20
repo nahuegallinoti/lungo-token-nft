@@ -6,7 +6,7 @@ const {
     ethereum
 } = window;
 
-export const GetContractInstance = (contractAddress, abi) => {
+export default function GetContractInstance(contractAddress, abi) {
 
     if (ethereum) {
         const provider = new ethers.providers.Web3Provider(ethereum);

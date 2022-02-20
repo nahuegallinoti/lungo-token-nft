@@ -12,13 +12,14 @@ contract LungoNFT is ERC721, ERC721Enumerable {
 
   constructor() ERC721("Lungo NFT", "LNG") {}
 
-  function mint() public
+  function mint() public payable
   {
+    require(msg.value == 0.02 ether, "Only 0.02 ether is allowed to mint");
     _mint(msg.sender, supply);
     supply += 1;    
-    uris[0] = "https://ipfs.io/ipfs/QmYyJNTadRaMuTBo796oARMXJ8CVNxDLy8v83GUnf1pcJL";
-    uris[1] = "https://ipfs.io/ipfs/QmVzXc17GMAEcT5Bjk7DwkqzB22o7UtWsHD64pf75diGQ9";
-    uris[2] = "https://ipfs.io/ipfs/QmXMCBmFXurAvgzQBimJ8KkC4QQLFDe7cEevJnpzUnubGr";
+    uris[0] = "https://ipfs.io/ipfs/QmV6fLGmeDLGm1bC8E7Mwz2SvBuyVB2hDqBJCKkqiJtVo4";
+    uris[1] = "https://ipfs.io/ipfs/QmV6fLGmeDLGm1bC8E7Mwz2SvBuyVB2hDqBJCKkqiJtVo4";
+    uris[2] = "https://ipfs.io/ipfs/QmV6fLGmeDLGm1bC8E7Mwz2SvBuyVB2hDqBJCKkqiJtVo4";
   }
 
 
