@@ -19,8 +19,8 @@ contract MarketNFT is ReentrancyGuard {
 
   uint public listing_count = 0;
   mapping (uint => Listing) public listings;
-  ERC721 nftContract = ERC721(0x17Db5ED08064445cE0C3f2b452B4BFA3d93a71F4);
-  ERC20 tokenContract = ERC20(0xfB13B339a00A821034e0010080870fCEC9D289CA);
+  ERC721 nftContract = ERC721(0x1fB76D1ca7194f4C1d93785601C18e89b9f52286);
+  ERC20 tokenContract = ERC20(0xCee8768384c9721c75FF42cF40d1bB2716C65d4A);
 
   function addListing(uint token_id, uint price) public nonReentrant
   {
